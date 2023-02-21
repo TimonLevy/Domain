@@ -4,7 +4,7 @@ Windows **New Techologies Lan Manager**, is a suite of security protocols used t
 
 ### How Does It Work?
 
-![The Process of NTLM Authentication](https://csandker.io/public/img/2017-09-10-WindowsNTLMAuthenticationScheme/NTLM_process.png)
+![The Process of NTLM Authentication](Pictures/NTLM/NTLM_Process.png)
 <p style="font-size:11px">NTLMv1 process.</p>
 
 There is little to no difference in the process between V1 and V2 so Ill explain it and elaborate on the slight difference later.
