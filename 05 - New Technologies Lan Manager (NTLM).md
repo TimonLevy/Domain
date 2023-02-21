@@ -42,6 +42,8 @@ There are multiple reasons for that, and we will go over them one by one.
 >
 > The "3 way handshake" that the protocol operates by is suceptible to MitM relay attacks. An attack where an attacker places themselves in a position inbetween the client and the server and simply relays the messages back and forth. In that position, the client believes the attacker is the server and the server believes the attacker is an innocent client. The attacker is then authenticated to the server instead of the client and has acces to all the rsources the client would have.
 
+![Relay Attack Process](Pictures/NTLM/NTLM_Relay_Process.png)
+
 > **No Mutual Authentication**
 >
 > This flaw is based on the fact that the client doesn't authenticate the server's identity. Meaning an attacker can identify as a server in a MitM attack and gain the credentials of the client. This is like the relay attack instead however the attacker can spread latteraly to the entire network using the client's credentials.
