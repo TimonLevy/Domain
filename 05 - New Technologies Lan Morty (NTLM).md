@@ -18,6 +18,7 @@ The process is as goes:
 > The **Client** will *encrypt* that challange with the **LM hash** of the user's password. an LM Hash is a 32 hexadecimal digit digest of the password (as seen below).
 
 ![LM HASH](https://www.netspi.com/wp-content/uploads/2014/10/HashExample.png)
+<p style="font-size:11px">An example of an NTLM Hash.</p>
 
 > After recieving the Client's answer the **Server** will check the answer by decrypting the challange with the hash of the password that it has. The password may be stored inside the server's SAM storage or it will forward that encrypted channage to the Domain Controller for decrypting.
 >
@@ -43,6 +44,7 @@ There are multiple reasons for that, and we will go over them one by one.
 > The "3 way handshake" that the protocol operates by is suceptible to MitM relay attacks. An attack where an attacker places themselves in a position inbetween the client and the server and simply relays the messages back and forth. In that position, the client believes the attacker is the server and the server believes the attacker is an innocent client. The attacker is then authenticated to the server instead of the client and has acces to all the rsources the client would have.
 
 ![Relay Attack Process](Pictures/NTLM/NTLM_Relay_Process.png)
+<p style="font-size:11px">NTLM Relay Attack.</p>
 
 > **No Mutual Authentication**
 >
