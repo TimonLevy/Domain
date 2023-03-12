@@ -41,3 +41,23 @@ However, a Privilege Escalation vulnerabiity was found in the extension. It is "
 Notice the `cpassword` variable, this is the password that the user will change to. It is encrypted in AES using a **32 bit** key, which is [**PUBLICCCC**](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gppref/2c15cbf0-f086-4c74-8b70-1f2fa45dd4be?redirectedfrom=MSDN). Notice the `userName` varialbe as well, the user which we are changing the credentials to is the local admin, [das fucked up](https://www.youtube.com/watch?v=CuycuV0E4KU&ab_channel=ZachMemes).
 
 Sooooo, as long as I have access to the domain, even with an unpivileged user. I can access the `group.xml` file**s**, decrypt the passwords using the AES algorithm and the key from the website and simply get all of the user passwords that are located there and move laterally across the network.
+
+## My Domain's GPOs
+
+1. Developer Group GPO
+   
+Honestly, in here I didn't feel like restricting too much.
+
+I disbaled autoruns from the resitry, and disabled the show password button to avoid any peepers who might wanna see the password.
+I also made the group members the local admins on the `WIN7-1` machine (10.0.0.3).
+
+2. Simple Users GPO
+
+In here I went a bit more strict.
+
+I disabled access to control panel, CMD and powershell.
+Then prevented them to login onto the machine 10.0.0.3.
+
+3. IT GPO
+
+Simply created a Policy Object that would make them local admins on all machines.
