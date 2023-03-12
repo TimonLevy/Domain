@@ -109,9 +109,47 @@ I chose the Windows 7 machine so it would be easier <3 and logged on as an IT ac
 > ![Open Mimikatz](/Pictures/Mimikatz/01_First_Open.PNG)
 > First, we open Mimikatz! this shows I can use it :)
 
-**Step 2 - Get Passwords**
+**SekurLSA::LogonPasswords | Get Passwords**
 > ![](/Pictures/Mimikatz/02_SEKURLSA_Logonpasswords.PNG)
-> In this step we get the cached passwords from the memor of the computer.
+> We get the cached passwords from the memor of the computer.
+
+**LsaDump::DCSync | To get the ntds.dit credentials**
+> ![](/Pictures/Mimikatz/03_SEKURLSA_DCSYNC.PNG)
+> In here we can get all the credentials stored on the DC, inside the ntds.dit file by imposing as a Domain Controller in the domain and asking for a replciation. There was no permission block we I was able to perform this procedure.
+>
+> ![](/Pictures/Mimikatz/04_DCSYNC_krbtgt_account_creds.PNG)
+> Here we pulled `krbtgt`'s NTLM hash.
+>
+> ![](/Pictures/Mimikatz/05_DCSYNC_domain_users_creds.PNG)
+> Some more domain users NTLM hashes.
+>
+> ![](/Pictures/Mimikatz/06_DCSYNC_Rick.PNG)
+> Performing a DCSync on a specific user.
+
+#### Golden Ticket time
+
+**SekurLsa::pth | Open a session with another user's ntlm hash**
+> ![](/Pictures/Mimikatz/07_CMD_on_MortyAcc_(DONT_USE).PNG)
+> This is an attack that lets an actor create a process with the token of another user using their ntlm hash. In this scenario I launched the Mimikatz process as a *Local Admin* so I had no access to the domain resources (This session is different t the one is the former examples). I listed the passwords that were stored in the cache and passed-the-hash to create a new cmd session with a domain user's token.
+
+**Mimikatz | Launch Mimikatz on the new impersonated session**
+> ![](/Pictures/Mimikatz/08_Mimikatz_on_CMD.PNG)
+
+**Token::Elevate /domainadmin | Elevate token to get domain admin permissions**
+> ![](/Pictures/Mimikatz/09_Impersonated_Domain_Admin.PNG)
+> This command is used to elevate token permissions to those of a domain admin. This command uses the WindowsAPI and steals a token from the system's memory.
+
+**Runas | Run a cmd as a domain user to get domain sid**
+> ![](/Pictures/Mimikatz/11_RUNAS_Get_Domain_Sid.PNG)
+> This is a step needed to create a golden ticket. The command requires the domain's sid to create the ticket (you can see it marked in gold).
+
+**Kerberos::Golden**
+> ![](/Pictures/Mimikatz/12_Golden_Ticket.PNG)
+> Finally we create the ticket, the arguments go as such:
+> * **DOMAIN** (Domain FQDN) - Microverse.Battery
+> * **SID** (Domain Security IDentifier) - domain sid shown in the last image
+> * **USER** (User to create the ticket for) - Administrator
+> * **KRBTGT** (The ntlm hash of the krbtgt account) - I got it using a DCSync attack after elevating the token, didn't show it as I already showed it above.
 
 ### Persistency
 
