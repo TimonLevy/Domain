@@ -35,7 +35,7 @@ The tool could be used to push files to computers, create folders, create env va
 
 However, a Privilege Escalation vulnerabiity was found in the extension. It is "patched" now so no biggie though. The vulnerability had to do with the fact that you could edit users and groups using the GPP, more specifically, change password. The way these changes would actually work is by storing all the configuration data on the SYSVOL share in the DC, inside of files called `groups.xml`. Now, the computers would simply import those configurations and apply them, so what's the problem? **ANYONE CAN ACCESS SYSVOL**, it's actually a must. Anyone can look at these files, which again, is a must for it to be appilable.
 
-[Here is what the file looks like](https://assets-global.website-files.com/601959b8cde20c101809c86a/603e5d033489813b8f15268d_groups_xml_content.jpeg)
+![Here is what the file looks like](https://assets-global.website-files.com/601959b8cde20c101809c86a/603e5d033489813b8f15268d_groups_xml_content.jpeg)
 <p style="font-size:11px">What the file looks like.</p>
 
 Notice the `cpassword` variable, this is the password that the user will change to. It is encrypted in AES using a **32 bit** key, which is [**PUBLICCCC**](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gppref/2c15cbf0-f086-4c74-8b70-1f2fa45dd4be?redirectedfrom=MSDN). Notice the `userName` varialbe as well, the user which we are changing the credentials to is the local admin, [das fucked up](https://www.youtube.com/watch?v=CuycuV0E4KU&ab_channel=ZachMemes).
