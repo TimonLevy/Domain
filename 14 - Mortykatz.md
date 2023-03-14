@@ -1,4 +1,4 @@
-# Mimikatz
+# MIMIKATZ, THE SWISS KNIFE OF THE DOMAIN ATTACKS
 
 Mimikatz is a cyber exploitation tool aimed at the windows operating system. The tool is most often used to extract passwords from memory as well as tickets and hashes.
 

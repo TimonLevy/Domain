@@ -1,4 +1,4 @@
-# NTLM Relay
+# NTLM RELAY
 
 ## What is NTLM Relay?
 The NTLM protocol is a response challange protocol used for authentication inside the LAN. An attack that is possible to produce on that protocol is called a `relay attack`.

@@ -1,4 +1,4 @@
-# Group Poicy Object
+# GROUP POLICY OBJECT
 
 A GPO or Group Policy Object, is a set of rules and instructions to be carried by all machines in the domain.
 
