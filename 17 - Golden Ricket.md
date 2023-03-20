@@ -1,4 +1,4 @@
-# Kerberos Golden Tickets
+# KERBEROS GOLDEN TICKET
 
 A Golden Ticket is an exploitation of the Kerberos mechanism that allows an actor to impersonate users and get unpriviledged priviledged access to any place that is accessible in the domain by anyone. A Golden Ticket is a fabricated TGT (Ticket Granting Ticket) that is valid because it is encrypted using krbtgt's password hash.
 
