@@ -1,3 +1,6 @@
+```diff
+-you didn't answer question 13!!
+```
 # MIMIKATZ, THE SWISS KNIFE OF THE DOMAIN ATTACKS
 
 Mimikatz is a cyber exploitation tool aimed at the windows operating system. The tool is most often used to extract passwords from memory as well as tickets and hashes.
@@ -49,7 +52,9 @@ Mimikatz can perform many attacks on the NTLM and Kerberos authentications metho
 * Overpass-The-Hash/Pass-The-Key (NTLM)
 * Kerberoast Golden/Silver Ticket
 * Pass-The-Cache (Windows/Linux)
-
+```diff
+-kerberoast, golden ticket and silver ticket are 3 different attacks
+```
 ### A Little History
 
 Mimikatz was written by Benjamin Delpy in order to show Microsoft that their authentication protocols are insecure, Mimikatz is a slang for "Cute cats" in French.
@@ -58,7 +63,9 @@ The first version was published by him **closed-source** in May of 2011. It was 
 ### 3 Modules In Depth
 
 In here I will summarize about 3 modules.
-
+```diff
+-name the rest of the modules
+```
 > **LSADUMP**
 >
 > Stands for **Local Security Authority Dump**, this module houses commands that are used to interact with LSA (Local Security Authority) and extract/dump credentials.

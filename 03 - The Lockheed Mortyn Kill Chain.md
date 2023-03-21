@@ -2,7 +2,9 @@
 
 The **Kill Chain**, developed by the company Lockheed Martin, is a **model** used to identify the stages that an attacker would perform in a cyber attack. The model has 7 stages, so let's wabba-labba-do-it babyyyyyy.
 
-
+```diff
+-was this company the first to use the term kill chain?
+```
 
 ### **Reconnaissance**
 ```
@@ -76,6 +78,9 @@ In this stage, the attacker will create a malware\payload to use in their attack
 
 The attacker will infiltrate the network using some kind of means, it can be either a phishing email containing some form of payload or even hacking into the network. In the delivery stage the attacker will gain access to the network and the users.
 
+```diff
+-what do you mean by hacking into the network?
+```
 
 
 ### **Exploitation**
@@ -124,6 +129,9 @@ This stage comes after performing reconnaissance, weaponization and delivery. In
 
 In this stage, after gaining access to the network and their targets the attackers will start to install the malware that they posses. From trojan horses to injectors and shells.
 
+```diff
+-what is the goal of this stage?
+```
 
 
 ### **Command and Control (C²)**
@@ -168,3 +176,7 @@ In this stage the attacker will create a communication channel with the malware 
 In this stage, the attacker has gained control of the network, installed all of his tools, installed all of ih malwares, created a C2 server and a botnet. After all of this, the attacker will finally achieve his original final goal. They may use their C2 server to make the computers perform certein actions like mine bitcoin, ddos some machine, steal and leak data, or spam mails.
 
 In this stage, the attacker is pretty much free to do whatever he wants.
+
+```diff
+-find an example of another different cyber kill chain model
+```

@@ -1,7 +1,9 @@
 # GROUP POLICY OBJECT
 
 A GPO or Group Policy Object, is a set of rules and instructions to be carried by all machines in the domain.
-
+```diff
+-every GPO applies to all the machines in the domain?
+```
 > **Policy**
 >
 > a definite course or method of action selected from among alternatives and in light of given conditions to guide and determine present and future decisions
@@ -13,7 +15,9 @@ For example, using a group policy I can set a single wallpaper that all computer
 The Policy is changed using the **Group Policy Manager**, it looks like a huge list of options and configurations that can be applied. A domain admin can create a policy then, choosing what rules he wants to set and enforce. And finally push that policy to the entire domain or a group or groups or even a specific OU.
 
 When a computer logs into the domain it will then pull all of the poliies that apply to it and apply all the configurations. That can be disabling cmd, disabling the ctrl + alt + dlt key combination or even disabling communication using particular protocols.
-
+```diff
+-what are the different types of GPOs and how are they applied to an object?
+```
 ## HOW CAN WE USE IT TO BE MORE SECURE?
 
 Like I said, GPO can be used to set different configurations. Some even regarding endpoint security. Here are some configurations that ma help you avoid being hackered:
@@ -24,9 +28,13 @@ Like I said, GPO can be used to set different configurations. Some even regardin
 4. Disable CMD on normal user accounts.
 5. Stop password enforcement.
 6. Disable remote desktop\ssh on machines that shouldn't have those.
-
+```diff
+-what is password enforcement?
+```
 And much more...
-
+```diff
+-איך נשתמש בצורה תשתיתית ואיך בצורה אבטחתית?
+```
 ## Group Policy Preference
 
 GPP or Group Policy Preference, was originally a 3rd-party extention for GPO that wanted to expand on the functionality of GPO and to replace most of the work what login scripts was used to do. The extension was adopted by microsoft with Windows Server 2008.
@@ -57,7 +65,9 @@ In here I went a bit more strict.
 
 I disabled access to control panel, CMD and powershell.
 Then prevented them to login onto the machine 10.0.0.3.
-
+```diff
+-they need to be able to login ONLY to 192.168.100.0 stations, there are more machines in the domain they should not be able to login to
+```
 3. IT GPO
 
 Simply created a Policy Object that would make them local admins on all machines.
