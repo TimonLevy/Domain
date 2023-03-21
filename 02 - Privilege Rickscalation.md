@@ -2,6 +2,10 @@
 
 **Privilege escalation** is a technique used by an attacker to get elevated privileges over the network/domain/host machine and be able tp perform more attacks. An attack might want to perform privilege escalation in oder to get access to *local admin*\\*system* privileges or even domain\enterprise admin privileges.
 
+```diff
+-just the privileges you noted are elevated? explain what are elevated privileges
+```
+
 ## How Can It Be Done?
 
 Privilege escalation techniques exploit human mistakes or code exploits. 
