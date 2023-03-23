@@ -111,6 +111,7 @@ Mimidogz is actually a thing... A way to "obfuscate" invoke-mimikatz, it does he
 Anyways, Mimidogz is actually better because dogs are cuter than cats, beat it loser.
 
 (I read the question wrong and thourgh that it said Mimikatz was better, sorry if I offended you.)
+
 ```diff
 -i am deeply offended, so give 2 more reasons mimiDOGS > mimiKATZ
 ```
