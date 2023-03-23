@@ -78,7 +78,9 @@ In here I will summarize about 3 modules.
 > * Replicate from DC.
 > * Push replications to DC.
 > * et cetera.
-
+```diff
+-what do you mean by "SECRETS" and et cetera?
+```
 > **SEKURLSA**
 >
 > This module's target is to interact with the portected memory of **LSASS** (Local Security Authority Subsystem Service) and dump credentials as well as tickets, keys, pins and hashes from it. This Module requires debug priviliges to interact with memory, but on a memory dump file (.DMP) does not.
@@ -98,6 +100,10 @@ In here I will summarize about 3 modules.
 > * Dump Currently logged on user's tickets.
 > * List tickets from the Kerberos credentials cache (ccache).
 
+```diff
+-why are calling an attacker actor?
+```
+
 ### Mimikatz Vs. Mimidogz
 
 Mimidogz is actually a thing... A way to "obfuscate" invoke-mimikatz, it does help to avoid detection and bypass some AVs... Bruh.
@@ -105,6 +111,9 @@ Mimidogz is actually a thing... A way to "obfuscate" invoke-mimikatz, it does he
 Anyways, Mimidogz is actually better because dogs are cuter than cats, beat it loser.
 
 (I read the question wrong and thourgh that it said Mimikatz was better, sorry if I offended you.)
+```diff
+-i am deeply offended, so give 2 more reasons mimiDOGS > mimiKATZ
+```
 
 ### H4X0R T1M3!!!! >:D
 
@@ -165,9 +174,14 @@ There are a few ways to leave a persistency using Mimikatz.
 1. Golden Tickets
 > A golden ticket is a persistenct technique in which you gain access to the hash of the **krbtgt** password and generate a spoofed tgt.
 > Using that tgt you may masquarade as any user in the domain and give yourself domain/enterprise admin permissions. 
-
+```diff
+-how is this a backdoor?
+```
 2. Changing passwords
 > The Mimikatz tool can send queries to change passwords of users using ntlm, meaning they now got a hold of a user in the domain. That can act as a backdoor for a long time.
 
 3. Creating new Users
 > Using the mimikatz tool an attacker can gain domain admin access and create new users in the AD, and leave them there as a backdoor to the domain.
+```diff
+-name at least 2 attacks to create a backdoor with mimikatz
+```
