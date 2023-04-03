@@ -3,8 +3,15 @@
 ## What is NTLM Relay?
 The NTLM protocol is a response challange protocol used for authentication inside the LAN. An attack that is possible to produce on that protocol is called a `relay attack`.
 
+```diff
+-used only inside a LAN?
+```
+
 In it, an actor poses as a man-in-the-middle between a user machine and a service the user wants to access. Then, that actor can relay the authentication messages between the two machines, since they cannot authenticate the identity of the attacker as the actual machine the attacker acts as the other machine for them both. Meaning that the Client thinks the attacker is the server and the server thinks the attacker is the client.
 
+```diff
+-MITM between a user machine and a service?? a service is not a machine. 
+```
 Finally, by forwarding the messages between the two endpoint the attaker can get access to the server resources **that the client has access to** without knowing the password of the client. The attacker authenticated to the server as the client **instead of the client**.
 
 ![](/Pictures/NTLM/NTLM_Relay_Process.png)
@@ -54,6 +61,9 @@ NTLM relay attacks were a popular technique, which was also their downfall. Miti
 1. **The Rise of Kerberos**
 > Kerberos was created in order to replace the ntlm protocol overall, made NTLM obsolete in domains with new machines and the NTLM relay attack impossible.
 
+```diff
+-the attack is impossible if a domain uses kerberos?
+```
 2. **Extended Protection for Authentication**
 > Is a method in which the authnetication process is bound to the TLS/SSL session it is transfered in, that means that the authentication key will only be valid for the SSL tunnel that is passed through. Passing it through any other ssl tunnel will make it invalid.
 >
@@ -72,3 +82,11 @@ NTLM relay attacks were a popular technique, which was also their downfall. Miti
 > SMB signing became more preveant as well. SMB signing is the process of adding a signature of the entire message in the SMB Header, which is the message's contents encrypted with the AES elgorithm and a session key derived from the NTLM Session key of that session (it is an option that can be enabled). That basically authenticates the sender for that session, meaning an attacker cannot relay those messages as they are not the original sender of those messages.
 >
 > Note: SMB does not support EPA, idealy you'd want to use Kerberos anyways.
+
+```diff
+-what is a MIC?
+```
+
+```diff
+-you didnt answer question 5!!
+```
