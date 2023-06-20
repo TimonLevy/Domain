@@ -25,8 +25,7 @@ Privilege escalation techniques usually exploit coding mistakes or miscofigurati
 * An attacker might perform a social engineering techniques in order to get the password from the user.
   - An attacked can send misleading links to spoofed login pages of popular websites in order to get the user's password.
 * Systems can have code valnurability that lets attackers run code under the system's account.
-  - Websites could have SQL injection valnurability which could lead to an attacked running code under the sql user's permissions. 
-* An attacker might literally be an omniscient being and just know the password `¯\_(ツ)_/¯`.
+  - Websites could have SQL injection valnurability which could lead to an attacked running code under the sql user's permissions.
 
 ```diff
 -give an example for each technic
