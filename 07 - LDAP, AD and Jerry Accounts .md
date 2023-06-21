@@ -1,39 +1,36 @@
 ```diff
--you didnt answer question 6!
+- You didnt answer question 6!
++ Yes I did...
 ```
 # LDAP, COMPUTER ACCOUNTS AND ACTIVE DIRECTORY
 
-A domain is made up of many machines and users, it is a collection of objects that are grouped by the controller, appropriately called the **Domain Controller**. Those objects are categorized and decentrelized into different groups under the *Active Directory* structure and they are managed using permissions. The structure is also used to authenticate and manage users.
+Objects in the domain are exist in a structure called an *Active Directory*. The active directory is a structure that lets the domain group instances, manage permissions and keep track of instances, just like an actual directory. In order to interact with the Directory we will use a **Directory Access Protocol**. An example for a Directory Access protocol is LDAP, which i covered about in the protocols part. LDAP allows users with permissions to query, enumerate, view, create, edit and delete instanced in the Active Directory.
 
-When we need to get information about those object we can ask the domain for it using a **Directory Access Protocol**. Using it, we can enumerate informationg about which users are in what directory, what machines are in what directory and even perform actions on those objects.
 ```diff
--you only get information about what objects are in directorys?
+- You only get information about what objects are in directories?
++ No.
 ```
 
 ## Active Directory
 
-As written above, the active directory is the logical directory used to store all of the containers, users, computers, permissions and policies belonging to a Domain. Simply put, if the DC is the heart of the domain, the Active Directory (AD) is the skeleton of the domain and users and computers themselves are the flesh of the domain.
+The `Active Directory (AD)` is the logical directory used to store all of the containers, users, computers, permissions and policies belonging to a Domain. Simply put, if the DC is the heart of the domain, the AD is the skeleton of the domain and users and computers themselves are the flesh of the domain.
 
 
 ## Computer Accounts
 
-In the Active Directory not only user accounts are stored but also computer accounts, to add a machine to the domain it is crucial that it will have it's own account in the domain. Only with a computer account will a machine be able to authenticate itself to the DC and be able to connect to the domain network and it's resources.
+Computer accounts are the parallels to user accounts, just for computers. To add a computer to the domain it has to have a computer account, using those accounts we can apply policies and permissions to specific computers or computer groups.
 ```diff
--only computer accounts authenticate in the domain?
+- Only computer accounts authenticate in the domain?
++ No, but it also wasn't implied.
 ```
 
-## Lighweight irectory Access Protocol
+## Lighweight Directory Access Protocol
 
-There were many "DAP"s over the course of Internet history, but LDAP is the most popular today. As the name suggests it is Lightweight. For a detailed more explanation you may read [my summary](https://github.com/TimonLevy/Networking/blob/main/03.%20Bigous%20Protocolous.md#lighweight-directory-access-protocol-aka-ldap).
+There were many "DAP"s over the course of Internet history, but LDAP is the most popular today. As the name suggests it is Lightweight. For a more detailed explanation you can read [my summary](https://github.com/TimonLevy/Networking/blob/main/03.%20Bigous%20Protocolous.md#lighweight-directory-access-protocol-aka-ldap).
 
-LDAP is a protocol that lets a user perform enumeration and operations on the objects of the Active Directory. One of those operations is the Search operation.
+LDAP is a protocol that lets a user perform enumeration and operations on the entries (objects, instances) of the Active Directory. One of those operations is the Search operation.<br
+The search operation let's users query the Directory tree and apply filters in order to find specific entries. Entries may be computer accounts, user accounts, security groups or any other instance in the AD, it's just an entry in the directory.
 
-    "
-     The Search operation is used to request a server to return, subject to access
-     controls and other restrictions, a set of entries matching a complex search criterion.
-     This can be used to read attributes from a single entry, from entries immediately subordinate
-     to a particular entry, or from a whole subtree of entries.
-    "
 ```diff
 -explain what is an entry
 ```
@@ -55,10 +52,11 @@ More directly, the client needs to provide these criterion (but not only):
 > **attributes** - A list of attributes to be returned from every object that matches the filter.
 
 
-## So let's sum it all up
+## So to answer the question
 
 If we want to find all of the computer in the domain, we may use LDAP to search for all of the computer accounts in the Active Directory using LDAP :)
 
 ```diff
--this is not a a summary.. this is an example of an operation you can do
+- this is not a a summary.. this is an example of an operation you can do
++ Nisuah -2.
 ```
