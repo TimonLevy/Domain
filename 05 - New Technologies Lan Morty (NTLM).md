@@ -4,11 +4,14 @@
 -you didn't answer question 4
 ```
 
-Windows **New Techologies Lan Manager**, is a suite of security protocols used to authenticate a user's identity. At it's core NTLM is an SSO (Single-sign on) authentication protocol that doen't send the password on the wire. There are two versions to the protocol, V1 and V2 where V2 is the "more secure" one.
+Windows **New Techologies Lan Manager**, is a suite of security protocols used to authenticate a user's identity. NTLM replaced the old Lan Manager Authentication suite, due to it's weakness.<br>
+At it's core NTLM is an SSO (Single-sign on) authentication protocol that doen't send the password on the wire. There are two versions to the protocol, V1 and V2 where V2 is the "more secure" one.
 
 ```diff
--if it is the new technologies what is the old one?
--name the suite of security protocols
+- if it is the new technologies what is the old one?
++ LM.
+- name the suite of security protocols
++ I didn't understand the second question.
 ```
 
 ### How Does It Work?
@@ -22,9 +25,10 @@ The process is as goes:
 
 > When a **client** wants to authenticate themselves to a server, it will send an **authentication request**.
 
-> Then The **server** will generate a random *nonce*, a 16 bit random number which is called a **challange**. And will send it back to the server.
+> Then The **server** will generate a random *nonce*. A 16 bit random number which is called a **challange**, to send to the **client**.
 ```diff
--send it back to the server?
+- Send it back to the server?
++ Client.
 ```
 > The **Client** will *encrypt* that challange with the **LM hash** of the user's password. an LM Hash is a 32 hexadecimal digit digest of the password (as seen below).
 
@@ -33,20 +37,26 @@ The process is as goes:
 
 > After recieving the Client's answer the **Server** will check the answer by decrypting the challange with the hash of the password that it has. The password may be stored inside the server's SAM storage or it will forward that encrypted channage to the Domain Controller for decrypting.
 >
-> In the first case, the server will validate the user incase it was able to decrypt the password. otherwise not.
+> In the first case, the **server** will validate the user by encrypting the nonce with the saved password and comparing the **client**'s response.<br>
+> In the second case, the DC will validate the user. <br>
+> In the case of local ntlm authentication: you may think of the Winlogon.exe as the client, lsass as the server and SAM as the database.
 ```diff
--it validates the user by decrypting the password?
-```
->
-> In the second case, the DC will validate the user.
-```diff
--can a user authenticate locally?
+- It validates the user by decrypting the password?
++ No :(
+- can a user authenticate locally?
++ Yes.
 ```
 
-So the difference between V1 and V2 and why V2 is "more secure" is just that V2 uses variable length hashes, and the client has to return a timestamp as well as their username in the 3rd step.
+In terms of the process, NTLMv2 doesn't about the same. However, the content of the messages is different.<br>
+- Both client and server generate challenges which are used in the process.<br>
+- A variable length hash of client information like domain name and timestamp is used to further authenticate the user.<br>
+- The hashes themselves are stronger.
+- The challange isn't encrypted using the password but rather hashes together with the password.
 ```diff
 -variable length hashes? explain
++ Done.
 -give another difference
++ And done.
 ```
 
 ### Why Is It So God Damn WEAK!
@@ -69,8 +79,10 @@ There are multiple reasons for that, and we will go over them one by one.
 
 > **No Mutual Authentication**
 >
-> This flaw is based on the fact that the client doesn't authenticate the server's identity. Meaning an attacker can identify as a server in a MitM attack and gain the credentials of the client. This is like the relay attack instead however the attacker can spread latteraly to the entire network using the client's credentials.
+> This flaw is based on the fact that the client doesn't authenticate the server's identity. Meaning an attacker can identify as a server in a MitM attack and gain the credentials of the client.<br>
+> It does that by recieving the client hash, and trying to bruteforce hashes until one matches. meaning it will have the string that was used to create the hash, which is the password. Popular tools to do that are JohnTheRipper and Hashcat.
 
 ```diff
--how can he gain the credentials of the client?
+- How can he gain the credentials of the client?
++ Hashcat.
 ```
