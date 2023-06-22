@@ -28,7 +28,7 @@ Computer accounts are the parallels to user accounts, just for computers. To add
 
 There were many "DAP"s over the course of Internet history, but LDAP is the most popular today. As the name suggests it is Lightweight. For a more detailed explanation you can read [my summary](https://github.com/TimonLevy/Networking/blob/main/03.%20Bigous%20Protocolous.md#lighweight-directory-access-protocol-aka-ldap).
 
-LDAP is a protocol that lets a user perform enumeration and operations on the entries (objects, instances) of the Active Directory. One of those operations is the Search operation.<br
+LDAP is a protocol that lets a user perform enumeration and operations on the entries (objects, instances) of the Active Directory. One of those operations is the Search operation.<br>
 The search operation let's users query the Directory tree and apply filters in order to find specific entries. Entries may be computer accounts, user accounts, security groups or any other instance in the AD.
 ```diff
 - explain what is an entry
