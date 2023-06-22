@@ -1,18 +1,19 @@
 # GROUP POLICY OBJECT
 
-A GPO or Group Policy Object, is a set of rules and instructions to be carried by all machines in the domain.
+A GPO or Group Policy Object, is a set of rules and instructions to be carried by machines in the domain.
 ```diff
--every GPO applies to all the machines in the domain?
+- every GPO applies to all the machines in the domain?
++ No.
 ```
 > **Policy**
 >
-> a definite course or method of action selected from among alternatives and in light of given conditions to guide and determine present and future decisions
+> a definite course or method of action selected from among alternatives and in light of given conditions to guide and determine present and future decisions.
 
 For example, using a group policy I can set a single wallpaper that all computers in the domain must use.
 
 ## HOW DOES IT WORK?
 
-The Policy is changed using the **Group Policy Manager**, it looks like a huge list of options and configurations that can be applied. A domain admin can create a policy then, choosing what rules he wants to set and enforce. And finally push that policy to the entire domain or a group or groups or even a specific OU.
+The Policy is changed using the **Group Policy Manager**. A domain admin can create a policy then, choosing what rules he wants to set and enforce. And finally push that policy to the entire domain or a group or groups or even a specific OU.
 
 When a computer logs into the domain it will then pull all of the poliies that apply to it and apply all the configurations. That can be disabling cmd, disabling the ctrl + alt + dlt key combination or even disabling communication using particular protocols.
 ```diff
