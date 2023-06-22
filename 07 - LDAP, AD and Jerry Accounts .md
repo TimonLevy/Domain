@@ -29,14 +29,13 @@ Computer accounts are the parallels to user accounts, just for computers. To add
 There were many "DAP"s over the course of Internet history, but LDAP is the most popular today. As the name suggests it is Lightweight. For a more detailed explanation you can read [my summary](https://github.com/TimonLevy/Networking/blob/main/03.%20Bigous%20Protocolous.md#lighweight-directory-access-protocol-aka-ldap).
 
 LDAP is a protocol that lets a user perform enumeration and operations on the entries (objects, instances) of the Active Directory. One of those operations is the Search operation.<br
-The search operation let's users query the Directory tree and apply filters in order to find specific entries. Entries may be computer accounts, user accounts, security groups or any other instance in the AD, it's just an entry in the directory.
-
+The search operation let's users query the Directory tree and apply filters in order to find specific entries. Entries may be computer accounts, user accounts, security groups or any other instance in the AD.
 ```diff
--explain what is an entry
+- explain what is an entry
++ Gotchu.
 ```
-This is the description of the Search operation according to the [official LDAP rfc](https://www.rfc-editor.org/rfc/rfc4511). Explaining that the client needs to provide a set of *complex search criterion*.
 
-More directly, the client needs to provide these criterion (but not only):
+The client needs to provide these criteria in order to perform the search:
 ```diff
 -name all the criteria (since these are not the only ones)
 ```
@@ -45,11 +44,19 @@ More directly, the client needs to provide these criterion (but not only):
 
 > **scope** - The scope to search whithin relative to the baseObject, can be immidiate children, all children (recursively) or only the base object.
 
-> **sizeLimit** - the maximum amount of entries to be returned as a result of the search operation.
+> **derefAliases** - A value that determines whether or not to defer alias entries. (like link files in a file system)
+
+> **sizeLimit** - The maximum amount of entries to be returned as a result of the search operation.
+
+> **timeLimit** - The maximum amount of time for a search operation to take.
+
+> **typesOnly** - A value that indicates whether to return only attribute descriptors or values as well.
 
 > **filter** - A filter for the object's attributes using logical operators (like, DistinguishedName == "PC1").
 
 > **attributes** - A list of attributes to be returned from every object that matches the filter.
+
+> **attributes** - The attribute fields to be returned for all the entries that match the filter.
 
 
 ## So to answer the question
@@ -58,5 +65,5 @@ If we want to find all of the computer in the domain, we may use LDAP to search 
 
 ```diff
 - this is not a a summary.. this is an example of an operation you can do
-+ Nisuah -2.
++ Nisuah -2, I meant something else.
 ```
