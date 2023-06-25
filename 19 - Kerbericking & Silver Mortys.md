@@ -6,17 +6,19 @@ A kerberoasting attack is an attack where an attacker cracks the credentials use
 
 > SPN - ServicePrincipalName is a unique identifier of a service instance.
 
-Kerberos associates SPNs with actual service accounts, meaning that these services have actual privileges, groups and permissions. But SPNs aren't limited to service accounts, user accounts can have SPNs too. Meaning, actors can kerberoast user accounts as well.
+SPNs are the service names that are used to request TGSs, Kerberos associates SPNs with domain accounts. Meaning that these services have privileges, belong to groups and have permissions. The KDC will give any domain user the TGS to any service he will ask without checking if they are authorized to log on to the service. The TGS is encrypted with the service account's ntlm password hash and so the attacker can keepthe TGS and crack it offline.
+
 ```diff
--fact check yourself. how will you kerberoast a user account? what does SPN stand for?
+- Fact check yourself. how will you kerberoast a user account? what does SPN stand for?
++ Fact checked.
 ```
 
 ### How Does The Attack Work?
 
-> * An actor with an authenticate domain user gets the SPN of some service on the network, say an sql server and requests to connect to it. 
-> * As a part of the authentication process they will get a TGS (Ticket Granting Service) that is encrypted with that service account's password hash.
-> * The Actor keeps that ticket and goes offline.
-> * The actor will attempt to crack that encryption and solve for the password using hash-cracing tools like `johntheripper` or `hashcat`.
+1. An attacker with an authenticate domain user gets the SPN of some service on the network, say an sql server and requests to connect to it.
+2. As a part of the authentication process they will get a TGS (Ticket Granting Service) that is encrypted with that service account's password hash.
+3. The attacker keeps the ticket.
+4. The attacker will attempt to crack that encryption and solve for the password using hash-cracking tools like `johntheripper` or `hashcat`.
 
 ### Mitigating The Attack
 
@@ -25,25 +27,31 @@ Honestly, it's pretty impossible to stop the attack itself. Getting the TGS is r
 * **Employ** a **STRONG PASSWORD POLICY** to impede any cracking attempts.
 * **Use** Multi-factor authentication, making users enter more than one authentication methods.
 * **Install** systems in the domain that pick up on suspicious user activity, like that of a compromised account.
+* **Make sure** that service accounts do not have any uneccesary & strong privileges.
+
 ```diff
--what is a common configuration mistake that can be good for an attacker doing kerberoasting?
+- What is a common configuration mistake that can be good for an attacker doing kerberoasting?
++ I would like sqluser with a little domain admin on the side :)
 ```
 ## SILVER TICKETS
 
-A Silver Ticket is like the inverse of kerberoasting instead of extracting a cleartext password to the service account using a TGS. An actor creates a forged new TGS using the password to that service's account.
-```diff
--not inverse. these attacks will usually come toghther (kerberoast followed by a silver ticket)
-```
+Silver Tickets are forged TGS tickets that are encrypted with the service account hash, usually that will be a hash cracked using kerberoasting.<br>
+Using a silver ticket allows an attacker unlimited access to that service and it's resources.
 
-Using a silver ticket allows an actor unlimited access to that service and it's resources.
+```diff
+- Not inverse. these attacks will usually come toghther (kerberoast followed by a silver ticket)
++ Noted.
+```
 
 ### How Does The Attack Work?
 
-> * Get the password of the service account, that can be done using a multitude of ways like: DCSync, SAM dump etc.
+1. Get the password of the service account, usually by Kerberoasting it's TGS.
+2. Forge a ticket using some exploitation tool like `Rubeus`, `Impacket`, `Mimikatz` or `Kekeo`.
+
 ```diff
 -what attack could you do to get it? (hint: its a few lines up)
++ ;)
 ```
-> * Forge a ticket using some tool like `Rubeus`, `Impacket`, `Mimikatz` or `Kekeo`.
 
 ### Mitigating the Attack
 
@@ -52,7 +60,12 @@ While there is no way to stop the forgery of the ticket itself, as a defender yo
 * **Install** AVs to detect password dumping tools
 * **Enable** PAC Validation on kerberos in the domain, that would check if the DC was the one to issue the ticket.
 * **Enforce** A **STRONG PASSWORD POLICY**!!!!!!!!!!!!!!!!
+* **Detect** discreptencies using logs
+  - if a user machine authenticated using a service's TGS. It means that there is foul play.
+  - if a machine requests a lot of Service tickets.
+* **Consider Implementing** honeypot service accounts in the domain, ones that will never be accessed by normal users but could attract attackers and will raise siem rules if accessed.
 
 ```diff
--how can you detect the attack?
+- How can you detect the attack?
++ Logs.
 ```
