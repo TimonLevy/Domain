@@ -1,18 +1,22 @@
 # NTLM RELAY
 
 ## What is NTLM Relay?
-The NTLM protocol is a response challange protocol used for authentication inside the LAN. An attack that is possible to produce on that protocol is called a `relay attack`.
+The NTLM protocol is a response challange protocol used for authentication on windows machines. An attack that is possible to produce targeting that protocol is called a `relay attack`.
 
 ```diff
--used only inside a LAN?
+- Used only inside a LAN?
++ No.
 ```
 
-In it, an actor poses as a man-in-the-middle between a user machine and a service the user wants to access. Then, that actor can relay the authentication messages between the two machines, since they cannot authenticate the identity of the attacker as the actual machine the attacker acts as the other machine for them both. Meaning that the Client thinks the attacker is the server and the server thinks the attacker is the client.
+In it, an attacker poses as a man-in-the-middle (MitM) between a user machine and another machine the user wants to access. Then, the attacker relays the authentication messages between the two machines.<br>
+That is possible since they cannot authenticate the identity of the peer, letting the attcker masquerade as the peer for both sides of the conversation. Meaning, the Client thinks the attacker is the server and the server thinks the attacker is the client.
 
 ```diff
--MITM between a user machine and a service?? a service is not a machine. 
+- MitM between a user machine and a service?? a service is not a machine.
++ I meant the machine hosting the service, but I removed the service label entirely.
 ```
-Finally, by forwarding the messages between the two endpoint the attaker can get access to the server resources **that the client has access to** without knowing the password of the client. The attacker authenticated to the server as the client **instead of the client**.
+
+Finally, by forwarding the messages between the two machines the attaker can get access to the target resources **that the client has access to** without knowing the password of the client. The attacker authenticated to the server as the client **instead of the client**.
 
 ![](/Pictures/NTLM/NTLM_Relay_Process.png)
 
@@ -59,10 +63,11 @@ Here are sniffings of those actions.
 NTLM relay attacks were a popular technique, which was also their downfall. Mitigations to protect against the NTLM relay attacks were published, spread and applied in many domains. And I will g over a few of them:
 
 1. **The Rise of Kerberos**
-> Kerberos was created in order to replace the ntlm protocol overall, made NTLM obsolete in domains with new machines and the NTLM relay attack impossible.
+> Kerberos was created in order to replace the ntlm protocol overall, made NTLM obsolete except for backwards compatibility. Kerberos itself isn't valnurable to relay attacks but the authentication protocol can be downgraded to NTLM by the attacker.
 
 ```diff
--the attack is impossible if a domain uses kerberos?
+- The attack is impossible if a domain uses kerberos?
++ No.
 ```
 2. **Extended Protection for Authentication**
 > Is a method in which the authnetication process is bound to the TLS/SSL session it is transfered in, that means that the authentication key will only be valid for the SSL tunnel that is passed through. Passing it through any other ssl tunnel will make it invalid.
@@ -83,10 +88,16 @@ NTLM relay attacks were a popular technique, which was also their downfall. Miti
 >
 > Note: SMB does not support EPA, idealy you'd want to use Kerberos anyways.
 
+4. **Message Integrity Control**
+> Same as SMB signing, it is a signing that is used in the last NTLM message (the NTLM_AUTHENTICATE). The signature itself is an HMAC_MD5 algorithm using the sessions key and a concatinated string that is the 3 combinde messages sent for the authentication. If the attacker changes the content of one of the packets the HMAC_MD5 output will not match between the original client and sender + the attacker cannot generate his own replacement signature since he does not have the key.
+> The attacker cannot remove the MIC since the server is expecting it, nor remove the flags used for it since they are used by the NTLMv2 Hash. 
+
 ```diff
--what is a MIC?
+- What is a MIC?
++ Added.
 ```
 
 ```diff
--you didnt answer question 5!!
+- You didnt answer question 5!!
++ I did now :)
 ```
