@@ -50,10 +50,13 @@ Mimikatz can perform many attacks on the NTLM and Kerberos authentications metho
 * Pass-The-Hash (NTLM)
 * Pass-The-Ticket (Kerberos)
 * Overpass-The-Hash/Pass-The-Key (NTLM)
-* Kerberoast Golden/Silver Ticket
+* Kerberoast
+* Golden Ticket
+* Silver Ticket
 * Pass-The-Cache (Windows/Linux)
 ```diff
--kerberoast, golden ticket and silver ticket are 3 different attacks
+- Kerberoast, golden ticket and silver ticket are 3 different attacks
++ Noted.
 ```
 ### A Little History
 
@@ -64,27 +67,30 @@ The first version was published by him **closed-source** in May of 2011. It was 
 
 In here I will summarize about 3 modules.
 ```diff
--name the rest of the modules
+- Name the rest of the modules
++ Yes
 ```
 > **LSADUMP**
 >
 > Stands for **Local Security Authority Dump**, this module houses commands that are used to interact with LSA (Local Security Authority) and extract/dump credentials.
 > These operations require debug privileges.
-> Using this module allows an actor to:
+> Using this module allows an attacker to:
 > * dump creds from local or remote LSA.
 > * dump creds from SAM.
-> * dump "SECRET"s.
+> * dump "SECRET"s - application credentials from dpapi, domain credentials from LSA
 > * change passwords for users.
 > * Replicate from DC.
 > * Push replications to DC.
-> * et cetera.
+> 
+> et cetera.
 ```diff
--what do you mean by "SECRETS" and et cetera?
+- What do you mean by "SECRETS" and et cetera?
++ It's all about the creds bb. et cetera ("etc") mean "and more things" in Latin.
 ```
 > **SEKURLSA**
 >
 > This module's target is to interact with the portected memory of **LSASS** (Local Security Authority Subsystem Service) and dump credentials as well as tickets, keys, pins and hashes from it. This Module requires debug priviliges to interact with memory, but on a memory dump file (.DMP) does not.
-> Using this module allows an actor to:
+> Using this module allows an attacker to:
 > * List Credentials (of both users and services) from **Credential Manager**, **WDigest**, **SSP**, **LSASS Memory and Dump Files**, **Kerberos**.
 > * List Kerberos Encryption Keys.
 > * Get KRBTGT password hashes.
@@ -94,14 +100,33 @@ In here I will summarize about 3 modules.
 > **KERBEROS**
 >
 > This modules interfaces with the official Microsoft Kerberos (MS-KILE) API. Because of that it does not need any special privileges.
-> Using this module an actor can:
+> Using this module an attacker can:
 > * Execute Pass-The-Ticket and Pass-The-Cchace attacks.
 > * Create Silver and Golden Tickets.
 > * Dump Currently logged on user's tickets.
 > * List tickets from the Kerberos credentials cache (ccache).
 
+The other modules are:
+* crypto
+* dpapi
+* event
+* misc
+* net
+* privilege
+* process
+* rpc
+* service
+* sid
+* standard
+* token
+* ts
+* vault
+
+These modules either allow more credential harvesting from other places in the widows OS like the credential vault or interaction with the processes\sessions on the machine.
+
 ```diff
--why are calling an attacker actor?
+- Why are calling an attacker actor?
++ Idk, I changed it.
 ```
 
 ### Mimikatz Vs. Mimidogz
@@ -110,10 +135,15 @@ Mimidogz is actually a thing... A way to "obfuscate" invoke-mimikatz, it does he
 
 Anyways, Mimidogz is actually better because dogs are cuter than cats, beat it loser.
 
+Two more reasons mimiDOGS > mimiKATZ:
+- Some anti-viruses don't recognise mimidogs as malware and let it run.
+- The animal part of the name (dogs/katz) is actually spelled correctly on Mimidogs as opposed to Mimikatz, because dogs aren't script kiddies who write with Zs.
+
 (I read the question wrong and thourgh that it said Mimikatz was better, sorry if I offended you.)
 
 ```diff
--i am deeply offended, so give 2 more reasons mimiDOGS > mimiKATZ
+- I am deeply offended, so give 2 more reasons mimiDOGS > mimiKATZ
++ Sorry :(
 ```
 
 ### H4X0R T1M3!!!! >:D
@@ -147,7 +177,7 @@ I chose the Windows 7 machine so it would be easier <3 and logged on as an IT ac
 
 **SekurLsa::pth | Open a session with another user's ntlm hash**
 > ![](/Pictures/Mimikatz/07_CMD_on_MortyAcc_(DONT_USE).PNG)
-> This is an attack that lets an actor create a process with the token of another user using their ntlm hash. In this scenario I launched the Mimikatz process as a *Local Admin* so I had no access to the domain resources (This session is different t the one is the former examples). I listed the passwords that were stored in the cache and passed-the-hash to create a new cmd session with a domain user's token.
+> This is an attack that lets an attacker create a process with the token of another user using their ntlm hash. In this scenario I launched the Mimikatz process as a *Local Admin* so I had no access to the domain resources (This session is different t the one is the former examples). I listed the passwords that were stored in the cache and passed-the-hash to create a new cmd session with a domain user's token.
 
 **Mimikatz | Launch Mimikatz on the new impersonated session**
 > ![](/Pictures/Mimikatz/08_Mimikatz_on_CMD.PNG)
@@ -172,17 +202,26 @@ I chose the Windows 7 machine so it would be easier <3 and logged on as an IT ac
 
 There are a few ways to leave a persistency using Mimikatz.
 
-1. Golden Tickets
-> A golden ticket is a persistenct technique in which you gain access to the hash of the **krbtgt** password and generate a spoofed tgt.
-> Using that tgt you may masquarade as any user in the domain and give yourself domain/enterprise admin permissions. 
+**Golden Tickets**
+> A golden ticket is a persistenct technique in which you gain access to the hash of the **krbtgt** password and generate a spoofed tgt.<br>
+> That spoofed tgt may have the sid of any user in the domain, including that of domain admins. Meaning you can give yourself very high privileges.<br>
+> The point of Golden Tickets is that their expiry date is not due for a very very long time, most of the time that would be 10 YEARS, meaning they could be used as a backdoor for future uses.
 ```diff
--how is this a backdoor?
+- How is this a backdoor?
++ 10 years of unlimited access B) (until someone restarts the macine or flushes cached kerberos tickets)
 ```
-2. Changing passwords
+
+**DCShadow**
+> This attack pushes data into the DC by pretending to be another DC in the domain, using this attack we may change password hashes of domain users (like krbtgt), add and delete data to any partition of the domain structure. This attack also allows creation of objects in the directory structure with false timestamps, impersonated SIDs and also deletion.<br>
+> using this attack we can change password hashes of users, add users or change permissions of already aqquired users. Which is very cool B)
+
+**More minor and very traceable attacks**
+Changing passwords
 > The Mimikatz tool can send queries to change passwords of users using ntlm, meaning they now got a hold of a user in the domain. That can act as a backdoor for a long time.
 
-3. Creating new Users
+Creating new Users
 > Using the mimikatz tool an attacker can gain domain admin access and create new users in the AD, and leave them there as a backdoor to the domain.
 ```diff
--name at least 2 attacks to create a backdoor with mimikatz
+- Name at least 2 attacks to create a backdoor with mimikatz
++ Done :)
 ```
