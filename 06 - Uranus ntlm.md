@@ -5,4 +5,3 @@ And the same goes for your butthole, it allows for a man in the middle. And I am
 
 ## Now for real...
 Uranus is a malware from team Matrix's great scenario [Galaxy], in which the malware sniffs SMB communications, extracts NTLM hashes from the packets and sends them over to be cracked offline.<br>
-That's it, no gay men.
