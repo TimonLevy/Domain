@@ -1,16 +1,22 @@
 # PASS THE TICKET
 
-A pass the ticket attack is very similar to a pass the hash attack, an actor assumes the identity of their victim without knowing their credentials.
+A pass the ticket attack is very similar to a pass the hash attack, an actor steals the TGS/TGT tickets of another user and uses them to authenticate as the other user.
+
 ```diff
 -explain what the attack actually is
 ```
 ### How Is It Performed?
 
-The act of passing another user's TGT and using their token snt the hard part, that can be achieved using Mimikatz, Rubeus, Kekeo and Impacket.
-The real difficult part is getting that TGT of the other user, without getting too elaborate one way is to impersonate a service that the user want to delegate to, that way the DC will give us their TGT. This can be done with `Rubeus` and `Kekeo`, Kekeo is a tool just like Mimikatz (Developed by the same guy) that uses different APIs and some other code that had to be seperated dude to licensing.
+The first thing that we need is to get the tickets of another user, it may be the TGS or the TGT. we can do that by either fake delegation or by dumping the lsass memory locally.<br>
+What is fake delegation? Let's say a domain service wants to perform actions on a domain resource on a user's behalf, if Kerberos delegation is configured that service would be able to do that. (Like a web server accessing a database on a user's behalf). Fake delegation is when an attacker poses as a domain service and asks to delegate on behalf the client, meaning he would get the client's TGT.
+
+Next is using the ticket, that can be done by various different exploitation tools like: Mimikatz, Rubeus, Kekeo and Impacket. The ticket is injected into the memory of the lsass process and it's permissions and privileges are given to the attacker. Pretty nifty.
+
 ```diff
--the attack is just TGTs?
--no clue what you are trying to say, do research again and rewrite the paragraph (read what you wrote before submitting!!)
+- The attack is just TGTs?
++ No.
+- No clue what you are trying to say, do research again and rewrite the paragraph (read what you wrote before submitting!!)
++ Fixed it.
 ```
 ### How Do We Mitigate The Attack?
 
@@ -18,8 +24,10 @@ Here are some things we can do:
 1. **Disable** Delegation on servers that don't need it, since they may store the TGT's of users that log onto them. (Based on neccessity, this is a useful functionality)
 2. **Check** who has the privilege to enable delegation on servers.
 3. **Disable** the ability for high value users to get delegated.
+4. **Detect** hooking of lsass process.
+5. **Detect** mismatch between logged on user and kerberos tickets.
 
-To detect a PtT attack, you could look in the cached tickets and look for any tickets that don't belong. Tickets that were injected.
 ```diff
--what ticket usage should you find abnormal to detect the attack?
+- What ticket usage should you find abnormal to detect the attack?
++ Tickets that do no belong to the logged on user.
 ```
