@@ -13,30 +13,54 @@ For example, using a group policy I can set a single wallpaper that all computer
 
 ## HOW DOES IT WORK?
 
-The Policy is changed using the **Group Policy Manager**. A domain admin can create a policy then, choosing what rules he wants to set and enforce. And finally push that policy to the entire domain or a group or groups or even a specific OU.
+The Policy is changed using the **Group Policy Manager**. Only domain/enterprise admins can create policies and apply them.<br>
+Group policies are applied in a process called **linking**, in the AD structure a group policy will be linked to an OU, object/Security Group/Domain/Site. Afterwhich the policy will apply it's regulations on to the objects inside the linked object. 
 
-When a computer logs into the domain it will then pull all of the poliies that apply to it and apply all the configurations. That can be disabling cmd, disabling the ctrl + alt + dlt key combination or even disabling communication using particular protocols.
+When a computer in the domain logs on it will pull all of the policies that are linked to it and apply all the configurations/limitations.
+
+There are different types of GPOs:<br>
+**Local GPO**
+> A GPO that exists by default on all windows machines, it is a gpo that applies only to the local machine/user and is used when that kind of configuration is needed.<br>
+> It is applied by default and in order to edit it you may user the local grou policy editor. Non-local GPO take preference over local GPOs and may even disabled them completely.
+
+**Non-local GPO**
+> A GPO that is applied to multiple machines by the linking process, will be used when configuration of multiple machines/users is required.
+
+**Starter GPO**
+> It is a template of group policy settings that be can used in future GPOs, used by administrators to establish a baseline for their GPOs.<br>
+> This kind of gpo isn't applied to the user/machine but rather used in other gpos.
+
 ```diff
--what are the different types of GPOs and how are they applied to an object?
+- What are the different types of GPOs and how are they applied to an object?
++ Added.
 ```
-## HOW CAN WE USE IT TO BE MORE SECURE?
+## GROUP POLICY SECURITY
 
-Like I said, GPO can be used to set different configurations. Some even regarding endpoint security. Here are some configurations that ma help you avoid being hackered:
+Group Policies allow administrators to set limitations and enable security features to the machines, ones that can help attackers infect them, using those limitations and features help us preserve the security of the network and the domain. Active Directory gives us a way to apply GPOs for security measures quite easily, in the AD you may create what's called a **Security Group**. A Security Groups is a group of machines and users that when a Policy is applies to, applies the policies to it's members. Using it we can easily link GPO to certein machines/users.
 
-1. Disable communications using SMBv1.
-2. Disable communications using NTLM.
-3. Force encryption when communicating.
-4. Disable CMD on normal user accounts.
-5. Stop password enforcement.
-6. Disable remote desktop\ssh on machines that shouldn't have those.
+Here are some useful security settings:<br>
+
+1. Force encryption when communicating.
+2. Disable CMD on normal user accounts.
+2. Stop password caching.
 ```diff
--what is password enforcement?
-```
-And much more...
-```diff
+- What is password enforcement?
++ I meant caching.
 -איך נשתמש בצורה תשתיתית ואיך בצורה אבטחתית?
++ Added.
 ```
-## Group Policy Preference
+## SUPPORTING DOMAIN INFRASTRUCTURE
+
+GPOs may also be linked to entire domains, sites and OUs to enable or disable features on different assets in the domain. For example if we want to disable strong users from logging on to certein machines we may do that using a GPO. GPOs can also be used to prevent access between machines, prevent usage of weak authentication protocols and disable features that aren't needed on some machines. 
+
+Here are some:
+1. Disable remote desktop\ssh on machines that shouldn't have those.
+2. Disable communications using SMBv1.
+3. Disable authentication using NTLM.
+
+By building a GPO for each segment in the network/domain we can provide better management that is more centralized.
+
+## GROUP POLICY PREFERENCE
 
 GPP or Group Policy Preference, was originally a 3rd-party extention for GPO that wanted to expand on the functionality of GPO and to replace most of the work what login scripts was used to do. The extension was adopted by microsoft with Windows Server 2008.
 
@@ -51,7 +75,7 @@ Notice the `cpassword` variable, this is the password that the user will change 
 
 Sooooo, as long as I have access to the domain, even with an unpivileged user. I can access the `group.xml` file**s**, decrypt the passwords using the AES algorithm and the key from the website and simply get all of the user passwords that are located there and move laterally across the network.
 
-## My Domain's GPOs
+## MY GR
 
 1. Developer Group GPO
    
@@ -65,9 +89,10 @@ I also made the group members the local admins on the `WIN7-1` machine (10.0.0.3
 In here I went a bit more strict.
 
 I disabled access to control panel, CMD and powershell.
-Then prevented them to login onto the machine 10.0.0.3.
+Then prevented them to login onto the machine Developer and DC machines.
 ```diff
--they need to be able to login ONLY to 192.168.100.0 stations, there are more machines in the domain they should not be able to login to
+- They need to be able to login ONLY to 192.168.100.0 stations, there are more machines in the domain they should not be able to login to
++ I made it so just didn't write it apparently.
 ```
 3. IT GPO
 
