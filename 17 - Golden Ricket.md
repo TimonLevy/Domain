@@ -24,7 +24,10 @@ To create a golden ticket an actor can use the Mimikatz malware or the Impacket 
 ```
 ```diff
 - How can you detect usage of the attack??
-+ Gotchu.
++ User and Domain Names - some attackers will use made up user and domain names in their TGTs.
++ Mismatched Data fields - User names and mismaching RIDs (group identifiers in the SID) and memberships.
++ Source IPs - Some TGTs can be used from machines that aren't even members of the domain.
++ TGS Requests Without Prior TGT Requests - This could indicate that the TGT wasn't given by the DC.
 ```
 ### CATCHING THE ATTACK
 
