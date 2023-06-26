@@ -9,9 +9,9 @@ At it's core NTLM is an SSO (Single-sign on) authentication protocol that doen't
 
 ```diff
 - if it is the new technologies what is the old one?
-+ LM.
 - name the suite of security protocols
-+ I didn't understand the second question.
++ LM (Lan Manager) was an authentication protocol belonging to the LANMAN (Lan Manager) OS.
++ It was severly flawed so it was built upon with NTLM Authentication in Windows NT 3.1.
 ```
 
 ### How Does It Work?
@@ -28,7 +28,7 @@ The process is as goes:
 > Then The **server** will generate a random *nonce*. A 16 bit random number which is called a **challange**, to send to the **client**.
 ```diff
 - Send it back to the server?
-+ Client.
++ Client, it was a typo.
 ```
 > The **Client** will *encrypt* that challange with the **LM hash** of the user's password. an LM Hash is a 32 hexadecimal digit digest of the password (as seen below).
 
@@ -42,9 +42,9 @@ The process is as goes:
 > In the case of local ntlm authentication: you may think of the Winlogon.exe as the client, lsass as the server and SAM as the database.
 ```diff
 - It validates the user by decrypting the password?
-+ No :(
++ No, it validates the user by encrypting the nonce using the password hash it has stored locally or on the DC, then comparing the two results.
 - can a user authenticate locally?
-+ Yes.
++ Yes, a user can authenticate locally using LSA (Local Security Authority) as the server and SAM (Security Account Manager) as the hash database.
 ```
 
 In terms of the process, NTLMv2 doesn't about the same. However, the content of the messages is different.<br>
@@ -53,10 +53,10 @@ In terms of the process, NTLMv2 doesn't about the same. However, the content of 
 - The hashes themselves are stronger.
 - The challange isn't encrypted using the password but rather hashes together with the password.
 ```diff
--variable length hashes? explain
-+ Done.
+- Variable length hashes? explain
++ The hash would be made up of variables such as the domain name, flags that were used during the conversation and a timestamp.
 -give another difference
-+ And done.
++ In NTLMv2 the challange isn't encrypted using the password but rather hashed together with the password.
 ```
 
 ### Why Is It So God Damn WEAK!
@@ -84,5 +84,6 @@ There are multiple reasons for that, and we will go over them one by one.
 
 ```diff
 - How can he gain the credentials of the client?
-+ Hashcat.
++ It does that by recieving the client's challange response, using information he already knows like domain name and timestamp the attacker can generate hashes until one matches.
++ At which point he will have accquired the cleartext password.
 ```
