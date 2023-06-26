@@ -11,6 +11,9 @@ SPNs are the service names that are used to request TGSs, Kerberos associates SP
 ```diff
 - Fact check yourself. how will you kerberoast a user account? what does SPN stand for?
 + Fact checked.
++ SPN is a name that is used when asking for a TGS.
++ It will have a constat string prefixing it describing the type of service, then it's user name and domain name.
++ Optionally, the SPN will have a port number at the end.
 ```
 
 ### How Does The Attack Work?
@@ -50,7 +53,7 @@ Using a silver ticket allows an attacker unlimited access to that service and it
 
 ```diff
 -what attack could you do to get it? (hint: its a few lines up)
-+ ;)
++ Kerberoasting? I don't know... ;)
 ```
 
 ### Mitigating the Attack
@@ -61,11 +64,14 @@ While there is no way to stop the forgery of the ticket itself, as a defender yo
 * **Enable** PAC Validation on kerberos in the domain, that would check if the DC was the one to issue the ticket.
 * **Enforce** A **STRONG PASSWORD POLICY**!!!!!!!!!!!!!!!!
 * **Detect** discreptencies using logs
-  - if a user machine authenticated using a service's TGS. It means that there is foul play.
-  - if a machine requests a lot of Service tickets.
+  - If a user machine authenticated using a service's TGS. It means that there is foul play.
+  - If a machine requests a lot of Service tickets.
 * **Consider Implementing** honeypot service accounts in the domain, ones that will never be accessed by normal users but could attract attackers and will raise siem rules if accessed.
 
 ```diff
 - How can you detect the attack?
-+ Logs.
++ Detect discreptencies using logs, such as:
++ - User machine authenticated using a service's TGS.
++ - A machine requests a lot of Service tickets.
++ Honeypot service accounts.
 ```
