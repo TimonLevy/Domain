@@ -3,7 +3,7 @@
 A GPO or Group Policy Object, is a set of rules and instructions to be carried by machines in the domain.
 ```diff
 - every GPO applies to all the machines in the domain?
-+ No.
++ No, machines in the domain are "linked" to gpos based on hierarchical structure and security groups. A machine will apply all the policies of all the GPOS that are Linked to it.
 ```
 > **Policy**
 >
@@ -42,12 +42,13 @@ Here are some useful security settings:<br>
 
 1. Force encryption when communicating.
 2. Disable CMD on normal user accounts.
-2. Stop password caching.
+2. Strong password policy enforcement.
 ```diff
 - What is password enforcement?
-+ I meant caching.
++ Enforcement of a strong password policy, allows the domain admin to set a "mask" to the password. 
++ Meaning that there would be a strict requirement for a password to have atleast 12 characters, a special sign and more.
 -איך נשתמש בצורה תשתיתית ואיך בצורה אבטחתית?
-+ Added.
++ Added, please read 'SUPPORTING DOMAIN INFRASTRUCTURE'.
 ```
 ## SUPPORTING DOMAIN INFRASTRUCTURE
 
