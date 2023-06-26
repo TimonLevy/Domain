@@ -3,7 +3,8 @@
 A pass the ticket attack is very similar to a pass the hash attack, an actor steals the TGS/TGT tickets of another user and uses them to authenticate as the other user.
 
 ```diff
--explain what the attack actually is
+- Explain what the attack actually is
++ A PtT attacker is when an attacker gets a hold of another user's TGT/TGS, injects it to their own session and gains the stolen ticket's privileges.
 ```
 ### How Is It Performed?
 
@@ -26,8 +27,11 @@ Here are some things we can do:
 3. **Disable** the ability for high value users to get delegated.
 4. **Detect** hooking of lsass process.
 5. **Detect** mismatch between logged on user and kerberos tickets.
+6. **Consider Impementing** honeypot accounts.
 
 ```diff
 - What ticket usage should you find abnormal to detect the attack?
-+ Tickets that do no belong to the logged on user.
++ - Tickets that do no belong to the logged on user.
++ - Tickets that were never requested from the DC.
++ - Tickets belonging to honeypots.
 ```
