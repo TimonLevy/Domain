@@ -56,7 +56,7 @@ Mimikatz can perform many attacks on the NTLM and Kerberos authentications metho
 * Pass-The-Cache (Windows/Linux)
 ```diff
 - Kerberoast, golden ticket and silver ticket are 3 different attacks
-+ Noted.
++ Noted and seperated.
 ```
 ### A Little History
 
@@ -68,7 +68,7 @@ The first version was published by him **closed-source** in May of 2011. It was 
 In here I will summarize about 3 modules.
 ```diff
 - Name the rest of the modules
-+ Yes
++ Named them all.
 ```
 > **LSADUMP**
 >
@@ -85,7 +85,8 @@ In here I will summarize about 3 modules.
 > et cetera.
 ```diff
 - What do you mean by "SECRETS" and et cetera?
-+ It's all about the creds bb. et cetera ("etc") mean "and more things" in Latin.
++ Services like dpapi and LSA keep sensitive information like application credentials and local user credentials in registry keys, files and memory, these are often called secrets.
++ Et cetera ("etc") mean "and more things" in Latin.
 ```
 > **SEKURLSA**
 >
@@ -135,15 +136,14 @@ Mimidogz is actually a thing... A way to "obfuscate" invoke-mimikatz, it does he
 
 Anyways, Mimidogz is actually better because dogs are cuter than cats, beat it loser.
 
-Two more reasons mimiDOGS > mimiKATZ:
-- Some anti-viruses don't recognise mimidogs as malware and let it run.
-- The animal part of the name (dogs/katz) is actually spelled correctly on Mimidogs as opposed to Mimikatz, because dogs aren't script kiddies who write with Zs.
-
 (I read the question wrong and thourgh that it said Mimikatz was better, sorry if I offended you.)
 
 ```diff
 - I am deeply offended, so give 2 more reasons mimiDOGS > mimiKATZ
 + Sorry :(
++ Two more reasons mimiDOGS > mimiKATZ:
++ - Some anti-viruses don't recognise mimidogs as malware and let it run.
++ - The animal part of the name (dogs/katz) is actually spelled correctly on Mimidogs as opposed to Mimikatz, because dogs aren't script kiddies who write with Zs.
 ```
 
 ### H4X0R T1M3!!!! >:D
@@ -202,14 +202,9 @@ I chose the Windows 7 machine so it would be easier <3 and logged on as an IT ac
 
 There are a few ways to leave a persistency using Mimikatz.
 
-**Golden Tickets**
-> A golden ticket is a persistenct technique in which you gain access to the hash of the **krbtgt** password and generate a spoofed tgt.<br>
-> That spoofed tgt may have the sid of any user in the domain, including that of domain admins. Meaning you can give yourself very high privileges.<br>
-> The point of Golden Tickets is that their expiry date is not due for a very very long time, most of the time that would be 10 YEARS, meaning they could be used as a backdoor for future uses.
-```diff
-- How is this a backdoor?
-+ 10 years of unlimited access B) (until someone restarts the macine or flushes cached kerberos tickets)
-```
+**Skeleton Key**
+> A skeleton key is an injected "master key" that is injected into the LSASS/KDC process on the DC, then an attacker can log on to any machine on the domain using any user with the master password.<br>
+> The attack is done by hooking the authentication function in the process' memory (in Kerberos, the encryption algorthim is downgraded to HMAC-RC4), writing a new function with the "master key" that acts a fail-over incase normal authentication fails (In order to no disrupt authentic user logon).
 
 **DCShadow**
 > This attack pushes data into the DC by pretending to be another DC in the domain, using this attack we may change password hashes of domain users (like krbtgt), add and delete data to any partition of the domain structure. This attack also allows creation of objects in the directory structure with false timestamps, impersonated SIDs and also deletion.<br>
@@ -223,5 +218,5 @@ Creating new Users
 > Using the mimikatz tool an attacker can gain domain admin access and create new users in the AD, and leave them there as a backdoor to the domain.
 ```diff
 - Name at least 2 attacks to create a backdoor with mimikatz
-+ Done :)
++ Skeleton Key, DCShadow.
 ```
