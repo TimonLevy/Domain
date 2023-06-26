@@ -4,11 +4,11 @@
 ```
 # LDAP, COMPUTER ACCOUNTS AND ACTIVE DIRECTORY
 
-Objects in the domain are exist in a structure called an *Active Directory*. The active directory is a structure that lets the domain group instances, manage permissions and keep track of instances, just like an actual directory. In order to interact with the Directory we will use a **Directory Access Protocol**. An example for a Directory Access protocol is LDAP, which i covered about in the protocols part. LDAP allows users with permissions to query, enumerate, view, create, edit and delete instanced in the Active Directory.
+Objects in the domain are exist in a structure called an *Active Directory*. The active directory is a structure that lets the domain group instances, manage permissions and keep track of instances, just like an actual directory. In order to interact with the Directory we will use a **Directory Access Protocol**. An example for a Directory Access protocol is LDAP, which i covered about in the protocols part. LDAP allows users with permissions to query, enumerate, view, create, edit and delete instances in the Active Directory.
 
 ```diff
 - You only get information about what objects are in directories?
-+ No.
++ No, LDAP allows users with permissions to query, enumerate, view, create, edit and delete instances in the Active Directory.
 ```
 
 ## Active Directory
@@ -21,7 +21,7 @@ The `Active Directory (AD)` is the logical directory used to store all of the co
 Computer accounts are the parallels to user accounts, just for computers. To add a computer to the domain it has to have a computer account, using those accounts we can apply policies and permissions to specific computers or computer groups.
 ```diff
 - Only computer accounts authenticate in the domain?
-+ No, but it also wasn't implied.
++ No, user and service accounts authenticate too.
 ```
 
 ## Lighweight Directory Access Protocol
@@ -32,12 +32,13 @@ LDAP is a protocol that lets a user perform enumeration and operations on the en
 The search operation let's users query the Directory tree and apply filters in order to find specific entries. Entries may be computer accounts, user accounts, security groups or any other instance in the AD.
 ```diff
 - explain what is an entry
-+ Gotchu.
++ Entries may be computer accounts, user accounts, security groups or any other instance in the AD.
 ```
 
 The client needs to provide these criteria in order to perform the search:
 ```diff
 -name all the criteria (since these are not the only ones)
++ Added them to the list.
 ```
 
 > **baseObject** - The base object to search relative to (may be the root).
