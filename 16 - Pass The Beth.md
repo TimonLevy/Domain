@@ -3,7 +3,7 @@
 A pass the hash is an attack on authentication protocol like NTLM, where the attacker uses a stolen password hash to authenticate. This gives them access to the impersonated user's resources like domain access, privileges and gpo and permissions.
 ```diff
 - What is their own passwords hash?
-+ The hash of the user they are logged on as, nevertheless removed the line. It was meaningless.
++ The hash of the user they are logged on as, nevermind that. Removed the line, it was meaningless.
 ```
 
 An attacker will dump hashes from memory, registry or files using tools like *fgdump*, *pwdump7* and [*Mimikatz*](/14%20-%20Mortykatz.md).<br>
@@ -19,7 +19,9 @@ The attacker needs the following to execute the attack:
 
 ```diff
 - What are the requirements to perform this attack?
-+ Added.
++ - Access to a domain machine which has the password hashes.
++ - Ability to run tools like Mimikatz to dump memory and access specific registry keys.
++ - Communication with the DC.
 ```
 Here I executed the attack on the NTLM Protocol, gained Domain Administrator privileges and Mapped The DC's `C:\` share on my pc.
 ![](/Pictures/Pass_The_Hash/01_Dumping_Credentials.PNG)
