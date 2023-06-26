@@ -5,7 +5,7 @@ The NTLM protocol is a response challange protocol used for authentication on wi
 
 ```diff
 - Used only inside a LAN?
-+ No.
++ No, removed that line. It is prevelant in LANs because it is easier to perform MiTM attack inside LANs.
 ```
 
 In it, an attacker poses as a man-in-the-middle (MitM) between a user machine and another machine the user wants to access. Then, the attacker relays the authentication messages between the two machines.<br>
@@ -67,7 +67,7 @@ NTLM relay attacks were a popular technique, which was also their downfall. Miti
 
 ```diff
 - The attack is impossible if a domain uses kerberos?
-+ No.
++ Kerberos itself isn't valnurable to relay attacks but the authentication protocol can be downgraded to NTLM by the attacker.
 ```
 2. **Extended Protection for Authentication**
 > Is a method in which the authnetication process is bound to the TLS/SSL session it is transfered in, that means that the authentication key will only be valid for the SSL tunnel that is passed through. Passing it through any other ssl tunnel will make it invalid.
@@ -94,7 +94,7 @@ NTLM relay attacks were a popular technique, which was also their downfall. Miti
 
 ```diff
 - What is a MIC?
-+ Added.
++ Added, read 'Message Intergrity Control'.
 ```
 
 ```diff
