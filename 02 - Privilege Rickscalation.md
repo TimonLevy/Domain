@@ -6,15 +6,15 @@
 - Kernel space code execution.
 Idealy, the attacker would want to get a local admin on his current machine or a domain admin user.
 ```diff
--just the privileges you noted are elevated? explain what are elevated privileges
-+ Got ya.
+- Just the privileges you noted are elevated? explain what are elevated privileges
++ Escalated privileges allow an attacker to perform more operations in the network\domain\local machine.
 ```
 
 ## How Can It Be Done?
 Privilege escalation techniques usually exploit coding mistakes or miscofiguration of systems.
 ```diff
 - what do you mean by human mistakes?
-+ Miscofigurations.
++ Miscofigurations, service accounts with cleartext password in their files for example.
 ```
 * Admins user credentials can be extracted from local password cache (Pass-The-Hash/Ticket).
   - A popular tool to do this is mimikatz is Windows.
@@ -28,8 +28,8 @@ Privilege escalation techniques usually exploit coding mistakes or miscofigurati
   - Websites could have SQL injection valnurability which could lead to an attacked running code under the sql user's permissions.
 
 ```diff
--give an example for each technic
-+ Served fresh and hot.
+- Give an example for each techniqe.
++ Served fresh and hot. (listed with the hollow bullets)
 -don't use words like "might" and "maybe" when explaining a term or giving an example (say he can\would)
 + Okie dokie.
 ```
