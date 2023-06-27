@@ -19,3 +19,4 @@ Lateral movement is a technique that is useful and could be deployed to achieve 
 - Give examples of the lateral movement (not the privilege escalation after it)
 + Worm malware.
 ```
+👍
