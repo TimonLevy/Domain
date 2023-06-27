@@ -96,3 +96,5 @@ Attackers will then target the network infrastructure, denying access to service
 
 ### 8. Exfiltration
 In this final step the attacker will implement an "exit path"  in order to get the data outside the network, credentials, classified files, ecryption keys.
+
+👍
