@@ -18,6 +18,10 @@ Privilege escalation techniques usually exploit coding mistakes or miscofigurati
 ```
 * Admins user credentials can be extracted from local password cache (Pass-The-Hash/Ticket).
   - A popular tool to do this is mimikatz is Windows.
+```diff
+-ptt/pth are things to do with the extracted creds not a way to extract them, give a way for that
+-also, mimikats is not a way it is a tool - i want you to understand behind the scenes
+```
 * Running code in the kernel space allows attackers access to every part of the OS and FS.
   - This can be achieved by running exploits on the OS or even installing malicious drivers.
 * Credentials can be "cracked" using bruteforcing methods.
