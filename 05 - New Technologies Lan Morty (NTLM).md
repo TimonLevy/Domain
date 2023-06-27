@@ -58,7 +58,7 @@ In terms of the process, NTLMv2 doesn't about the same. However, the content of 
 -give another difference
 + In NTLMv2 the challange isn't encrypted using the password but rather hashed together with the password.
 
--that is incorrect or not phrased well - try to explain again more clearly
+-try again
 ```
 
 ### Why Is It So God Damn WEAK!
