@@ -33,6 +33,8 @@ There are different types of GPOs:<br>
 ```diff
 - What are the different types of GPOs and how are they applied to an object?
 + Added.
+
+- the types are local, site-level, domain-level and OU. answer again.
 ```
 ## GROUP POLICY SECURITY
 
