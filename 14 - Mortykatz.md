@@ -87,6 +87,7 @@ In here I will summarize about 3 modules.
 - What do you mean by "SECRETS" and et cetera?
 + Services like dpapi and LSA keep sensitive information like application credentials and local user credentials in registry keys, files and memory, these are often called secrets.
 + Et cetera ("etc") mean "and more things" in Latin.
+-the english word is eccetera
 ```
 > **SEKURLSA**
 >
@@ -123,6 +124,10 @@ The other modules are:
 * ts
 * vault
 
+```diff
+- you forgot BUSYLIGHT, IIS, MINESWEEPER and SYSENV
+```
+
 These modules either allow more credential harvesting from other places in the widows OS like the credential vault or interaction with the processes\sessions on the machine.
 
 ```diff
@@ -144,6 +149,8 @@ Anyways, Mimidogz is actually better because dogs are cuter than cats, beat it l
 + Two more reasons mimiDOGS > mimiKATZ:
 + - Some anti-viruses don't recognise mimidogs as malware and let it run.
 + - The animal part of the name (dogs/katz) is actually spelled correctly on Mimidogs as opposed to Mimikatz, because dogs aren't script kiddies who write with Zs.
+
+-good, now give 2 reasons dogs>cats
 ```
 
 ### H4X0R T1M3!!!! >:D
