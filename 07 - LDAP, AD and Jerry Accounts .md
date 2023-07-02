@@ -68,3 +68,5 @@ If we want to find all of the computer in the domain, we may use LDAP to search 
 - this is not a a summary.. this is an example of an operation you can do
 + Nisuah -2, I meant something else.
 ```
+
+👍
