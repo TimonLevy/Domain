@@ -34,4 +34,6 @@ Here are some things we can do:
 + - Tickets that do no belong to the logged on user.
 + - Tickets that were never requested from the DC.
 + - Tickets belonging to honeypots.
+
+-you can detect a single session with more then one ticket
 ```
