@@ -74,4 +74,6 @@ While there is no way to stop the forgery of the ticket itself, as a defender yo
 + - User machine authenticated using a service's TGS.
 + - A machine requests a lot of Service tickets.
 + Honeypot service accounts.
+
+- what can indicate a ticket has been manipulated?
 ```
