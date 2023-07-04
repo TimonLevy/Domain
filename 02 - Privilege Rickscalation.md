@@ -16,8 +16,8 @@ Privilege escalation techniques usually exploit coding mistakes or miscofigurati
 - what do you mean by human mistakes?
 + Miscofigurations, service accounts with cleartext password in their files for example.
 ```
-* Admins user credentials can be extracted from local password cache (memory carving).
-  - An attacker can access the memory of the lsass process on the machine and extract the stored tickets\hashes.
+* Other domain admin's/user's credentials can be extracted from local password cache (memory carving).
+  - An attacker can access the memory of the lsass process on the machine and extract the stored tickets\hashes (In order to do that he needs a high privilege account  on the machine already).
 ```diff
 - Ptt/pth are things to do with the extracted creds not a way to extract them, give a way for that
 - Also, mimikats is not a way it is a tool - i want you to understand behind the scenes
