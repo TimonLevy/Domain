@@ -56,9 +56,10 @@ In terms of the process, NTLMv2 doesn't about the same. However, the content of 
 - Variable length hashes? explain
 + The hash would be made up of variables such as the domain name, flags that were used during the conversation and a timestamp.
 -give another difference
-+ In NTLMv2 the challange isn't encrypted using the password but rather hashed together with the password.
++ NTLM v2 uses a stronger encryption algorithm knwon as HMAC as oppposed to the encryption algorithm 3DES used in ntlmv1
 
 -try again
++ Done diddly did.
 ```
 
 ### Why Is It So God Damn WEAK!
