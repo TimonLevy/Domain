@@ -87,7 +87,8 @@ In here I will summarize about 3 modules.
 - What do you mean by "SECRETS" and et cetera?
 + Services like dpapi and LSA keep sensitive information like application credentials and local user credentials in registry keys, files and memory, these are often called secrets.
 + Et cetera ("etc") mean "and more things" in Latin.
--the english word is eccetera
+- The english word is eccetera
++ It's a synonim, eccetera = et cetera. But just pronounced with a c.
 ```
 > **SEKURLSA**
 >
@@ -109,10 +110,13 @@ In here I will summarize about 3 modules.
 > * List tickets from the Kerberos credentials cache (ccache).
 
 The other modules are:
+* busylight
 * crypto
 * dpapi
 * event
+* iis
 * misc
+* minesweeper
 * net
 * privilege
 * process
@@ -120,12 +124,14 @@ The other modules are:
 * service
 * sid
 * standard
+* sysenv
 * token
 * ts
 * vault
 
 ```diff
 - you forgot BUSYLIGHT, IIS, MINESWEEPER and SYSENV
++ Added, I missed those.
 ```
 
 These modules either allow more credential harvesting from other places in the widows OS like the credential vault or interaction with the processes\sessions on the machine.
