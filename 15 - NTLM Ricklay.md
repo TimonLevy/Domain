@@ -70,6 +70,8 @@ NTLM relay attacks were a popular technique, which was also their downfall. Miti
 + Kerberos itself isn't valnurable to relay attacks but the authentication protocol can be downgraded to NTLM by the attacker.
 
 -how?
++ https://csandker.io/2018/04/04/SPNEGODown.html Here is a POC of authentication protocol downgrading.
++ Also, if the Kerberos protocol fails for some reason NTLM authentication can be used instead (This can be blocked in the GPO).
 ```
 2. **Extended Protection for Authentication**
 > Is a method in which the authnetication process is bound to the TLS/SSL session it is transfered in, that means that the authentication key will only be valid for the SSL tunnel that is passed through. Passing it through any other ssl tunnel will make it invalid.
