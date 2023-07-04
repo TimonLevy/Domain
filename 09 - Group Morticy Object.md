@@ -24,7 +24,12 @@ There are different types of GPOs:<br>
 > It is applied by default and in order to edit it you may user the local grou policy editor. Non-local GPO take preference over local GPOs and may even disabled them completely.
 
 **Non-local GPO**
-> A GPO that is applied to multiple machines by the linking process, will be used when configuration of multiple machines/users is required.
+> A GPO that is applied to multiple machines by the linking process, will be used when configuration of multiple machines/users is required.<br>
+> These GPOs can be categorized as well into different levels:
+> * **Object Level** - Would apply to any machine directly linked to it, used to apply specific policies.
+> * **OU Level** - A non-local GPO that is linked to the OU the object is located in, meaning it would be applied to all objects inside that OU.
+> * **Domain Level** - A non-local GPO linked at the domain level, used to set a certein policy to the entire domain.
+> * **Site Level** - A non-local domain that affects a certein regional area of a domain. Could apply policies that would differ between countries.
 
 **Starter GPO**
 > It is a template of group policy settings that be can used in future GPOs, used by administrators to establish a baseline for their GPOs.<br>
