@@ -30,6 +30,9 @@ To create a golden ticket an actor can use the Mimikatz malware or the Impacket 
 + TGS Requests Without Prior TGT Requests - This could indicate that the TGT wasn't given by the DC.
 
 - what windows events can indicate of a golden ticket?
++ Event ID: 4768 [A Kerberos authentication ticket (TGT) was requested] can log both success and failure.
++ Event ID: 4769 [A Kerberos service ticket was requested] can log both success and failure.
++ If you see a logon from a machine onto a service without an even with the id 4768 it means that the DC didn't give them a tgt, which could indicate a golden ticket attack.
 ```
 ### CATCHING THE ATTACK
 
