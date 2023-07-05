@@ -76,4 +76,5 @@ While there is no way to stop the forgery of the ticket itself, as a defender yo
 + Honeypot service accounts.
 
 - what can indicate a ticket has been manipulated?
++ Logs often show information about Kerberos tickets, the encryption algorithm field shows an enum that represents the encryption algorithm used. If the number is 17 (RC4) it could be a sign of ticket manipulation.
 ```
